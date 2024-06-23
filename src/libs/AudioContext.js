@@ -1,5 +1,9 @@
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let analyser = audioCtx.createAnalyser();
+let audioCtx, analyser;
+if (typeof window !== 'undefined') {
+  // Estamos en un entorno de navegador
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  analyser = audioCtx.createAnalyser();
+}
 
 const AudioContext  = {
 

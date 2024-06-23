@@ -13,10 +13,12 @@ let onSaveCallback
 let onDataCallback
 let constraints
 
-navigator.getUserMedia = (navigator.getUserMedia
-                          || navigator.webkitGetUserMedia
-                          || navigator.mozGetUserMedia
-                          || navigator.msGetUserMedia)
+if (typeof navigator !== 'undefined' && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  navigator.getUserMedia = (navigator.getUserMedia
+      || navigator.webkitGetUserMedia
+      || navigator.mozGetUserMedia
+      || navigator.msGetUserMedia)
+}
 
 export class MicrophoneRecorder {
   constructor(onStart, onStop, onSave, onData, options, soundOptions) {
