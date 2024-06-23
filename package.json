@@ -1,5 +1,5 @@
 {
-  "name": "react-mic",
+  "name": "react-18-mic",
   "version": "18.0.0",
   "description": "Record audio from your microphone and display as a sound oscillation",
   "main": "dist/index.js",

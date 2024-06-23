@@ -63,7 +63,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       hash: true,
-      title: 'React-Mic',
+      title: 'React-18-Mic',
       filename: `${PATH_OUT}/index.html`,
       template: `${PATH_SRC}/index.html`,
     }),

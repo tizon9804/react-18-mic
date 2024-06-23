@@ -3,7 +3,7 @@ module.exports = {
   npm: {
     esModules: true,
     umd: {
-      global: 'react-mic',
+      global: 'react-18-mic',
       externals: {
         react: 'React'
       }
