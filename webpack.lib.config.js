@@ -14,7 +14,7 @@ module.exports = {
     path: PATH_OUT,
     filename: 'index.js',
     library: 'ReactMic',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd2'
   },
 
   module: {
