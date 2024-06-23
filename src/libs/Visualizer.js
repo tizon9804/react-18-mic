@@ -47,13 +47,22 @@ const Visualizer = {
 
       canvasCtx.lineTo(canvas.width, canvas.height/2);
       canvasCtx.stroke();
-    };
+    }
 
     draw();
   },
 
   visualizeFrequencyBars(canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
-    const self = this;
+
+    const hexToRgb = (hex) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    }
+
     let analyser = AudioContext.getAnalyser();
     analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
@@ -77,21 +86,19 @@ const Visualizer = {
       for(let i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
 
-        const rgb = self.hexToRgb(strokeColor);
+        const rgb = hexToRgb(strokeColor);
 
-        // canvasCtx.fillStyle = `rgb(${barHeight+100},${rgb.g},${rgb.b})`;
         canvasCtx.fillStyle = strokeColor;
         canvasCtx.fillRect(x,height-barHeight/2,barWidth,barHeight/2);
 
         x += barWidth + 1;
       }
-    };
+    }
 
     draw();
   },
 
   visualizeFrequencyCircles(canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
-    const self = this;
     let analyser = AudioContext.getAnalyser();
     analyser.fftSize = 32;
     const bufferLength = analyser.frequencyBinCount;
@@ -130,18 +137,8 @@ const Visualizer = {
         canvasCtx.arc(width / 2, height / 2, r, 0, 2 * Math.PI);
         canvasCtx.stroke();
       }
-    };
+    }
     draw();
-  },
-
-
-  hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
   }
 
 }
